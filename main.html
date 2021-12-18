@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css"></link>
+  </head>
+
+  <body>
+    <h1 class="center">TAGIHAN LISTRIK</h1><br>
+    <form id="test" onsubmit="return validateForm()">
+      <div class="center" style="background-color: #DFD3C3;">
+          
+        <table>
+
+            <tr>
+              <th>
+                  <label for="NamaPelanggan">Nama Pelanggan:</label>
+              </th>
+              <th>          
+                  <input type="text" id="NamaPelanggan" name="NamaPelanggan"><br><br>
+              </th>
+        
+            </tr>
+
+            <tr>
+                <th>
+                    <label for="Kategori">Kategori:</label>
+                </th>
+                <th>          
+                    <input type="text" id="Kategori" name="Kategori"><br><br>
+                </th>
+          
+              </tr>
+              
+              <tr>
+                <th>
+                    <label for="JumlahPemakaian">Jumlah Pemakaian:</label>
+                </th>
+                <th>          
+                    <input type="text" id="JumlahPemakaian" name="JumlahPemakaian"><br><br>
+                </th>
+          
+              </tr>
+
+          </table>
+          <br>
+          <br>
+          
+      </div>
+      <div class="center">
+        <button class="center button button1" type="submit"><b>SUBMIT</b></button>
+      </div>
+    </form>
+      <h1 class="center">RINCIAN TAGIHAN</h1><br>
+      <div class="center">
+
+      <h2>Milik:</h2>
+      <h2 id="namaorang"></h2>
+    </div>
+      <div class="center">
+       
+       
+        <table id="myTable">
+            <tr>
+              <th>Jumlah</th>
+              <th>Tarif per KWH</th>
+              <th>Abodemen</th>
+              <th>Sub Total</th>
+            </tr>
+            <tr>
+              <td id="nomor"></th>
+              <td id="hasil-output"></th>
+              <td id="Abodemen"></th>
+              <td id="SubTotal"></th>
+            </tr>
+            <tr>
+              <td></td>
+              <td >Subtotal</th>
+              <td></td>
+              <td id="hasilsubtotal"></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td >Pajak</th>
+              <td></td>
+              <td id="hasilpajak"></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td >Bayar</th>
+              <td></td>
+              <td id="hasilbayar"></td>
+            </tr>
+     
+          </table>
+
+          
+      </div>
+      
+    
+  </body>
+</html>
+
+
+<script>
+
+  const Myform = document.getElementById("test")
+ 
+  var a= 2;
+  let cat = document.querySelector("#Kategori");
+  let jp = document.querySelector("#JumlahPemakaian");
+  let x =document.querySelector("#NamaPelanggan");
+
+  Myform.addEventListener("submit",(e)=>{
+    e.preventDefault();
+
+   if (x.value == ""){
+     alert("‘fields nama_fields harus diisi!’");
+     return false;
+   }
+   if (cat.value == ""){
+     alert("‘fields kategori_fields harus diisi!’");
+     return false;
+   }
+   if (jp.value == ""){
+     alert("‘fields jumlahpemakaian_fields harus diisi!’");
+     return false;
+   }
+   if (jp.value > 30){
+     alert("‘Jumlah hari tidak valid’,");
+     return false;
+   }
+   if (cat.value == "social" || cat.value == "Social" && x.value != ""){
+     console.log("wokwok");
+     var s = ''
+     var n  = ''
+     var a = ''
+     var t = ''
+     
+     for(var i = 1; i <= jp.value; i++) {
+    
+      n += i;
+
+      n += '<br>';
+      var hasil = document.getElementById("nomor");
+
+      hasil.innerHTML = n;
+    }
+     for(var i = 1; i <= jp.value; i++) {
+    
+        s += (i)*300;
+    
+        s += '<br>';
+        var hasil = document.getElementById("hasil-output");
+
+        hasil.innerHTML = s;
+     }
+     for(var i = 1; i <= jp.value; i++) {
+    
+      a += 10000;
+
+      a += '<br>';
+      var hasil = document.getElementById("Abodemen");
+
+      hasil.innerHTML = a;
+      
+
+   }
+   for(var i = 1; i <= jp.value; i++) {
+    
+    t += (i)*300+10000;
+
+    t += '<br>';
+    var hasil = document.getElementById("SubTotal");
+
+    hasil.innerHTML = t;
+    
+  }
+  var no = document.getElementById("namaorang");
+  var h
+  h = x.value;
+  no.innerHTML = h;
+  var hasilsubtotal = (jp.value*300)+10000;
+  var st = document.getElementById("hasilsubtotal");
+
+    st.innerHTML = hasilsubtotal;
+  
+  var hasilpajak =  (jp.value*300)*(0/100);
+  var pjk = document.getElementById("hasilpajak");
+
+    pjk.innerHTML = hasilpajak;
+  
+  var hasilbayar =  hasilsubtotal+hasilpajak;
+  var hb = document.getElementById("hasilbayar");
+
+    hb.innerHTML = hasilbayar;
+}
+  
+  
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+   else if (cat.value == "rumah" || cat.value == "Rumah" && x.value != ""){
+    console.log("wokwok");
+     var s = ''
+     var n  = ''
+     var a = ''
+     var t = ''
+     
+     for(var i = 1; i <= jp.value; i++) {
+    
+      n += i;
+
+      n += '<br>';
+      var hasil = document.getElementById("nomor");
+
+      hasil.innerHTML = n;
+    }
+     for(var i = 1; i <= jp.value; i++) {
+    
+        s += (i)*500;
+    
+        s += '<br>';
+        var hasil = document.getElementById("hasil-output");
+
+        hasil.innerHTML = s;
+     }
+     for(var i = 1; i <= jp.value; i++) {
+    
+      a += 30000;
+
+      a += '<br>';
+      var hasil = document.getElementById("Abodemen");
+
+      hasil.innerHTML = a;
+      
+
+   }
+   for(var i = 1; i <= jp.value; i++) {
+    
+    t += (i)*500+30000;
+
+    t += '<br>';
+    var hasil = document.getElementById("SubTotal");
+
+    hasil.innerHTML = t;
+    
+  }
+  var no = document.getElementById("namaorang");
+  var h
+  h = x.value;
+  no.innerHTML = h;
+  var hasilsubtotal = (jp.value*500)+30000;
+  var st = document.getElementById("hasilsubtotal");
+
+    st.innerHTML = hasilsubtotal;
+  
+  var hasilpajak =  hasilsubtotal*(10/100);
+  var pjk = document.getElementById("hasilpajak");
+
+    pjk.innerHTML = hasilpajak;
+  
+  var hasilbayar =  hasilsubtotal+hasilpajak;
+  var hb = document.getElementById("hasilbayar");
+
+    hb.innerHTML = hasilbayar;
+}
+  
+  
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+   else if (cat.value == "apartemen" || cat.value == "Apertemen" && x.value != ""){
+    console.log("wokwok");
+     var s = ''
+     var n  = ''
+     var a = ''
+     var t = ''
+     
+     for(var i = 1; i <= jp.value; i++) {
+    
+      n += i;
+
+      n += '<br>';
+      var hasil = document.getElementById("nomor");
+
+      hasil.innerHTML = n;
+    }
+     for(var i = 1; i <= jp.value; i++) {
+    
+        s += (i)*750;
+    
+        s += '<br>';
+        var hasil = document.getElementById("hasil-output");
+
+        hasil.innerHTML = s;
+     }
+     for(var i = 1; i <= jp.value; i++) {
+    
+      a += 50000;
+
+      a += '<br>';
+      var hasil = document.getElementById("Abodemen");
+
+      hasil.innerHTML = a;
+      
+
+   }
+   for(var i = 1; i <= jp.value; i++) {
+    
+    t += (i)*750+50000;
+
+    t += '<br>';
+    var hasil = document.getElementById("SubTotal");
+
+    hasil.innerHTML = t;
+    
+  }
+  var no = document.getElementById("namaorang");
+  var h
+  h = x.value;
+  no.innerHTML = h;
+  var hasilsubtotal = (jp.value*750)+50000;
+  var st = document.getElementById("hasilsubtotal");
+
+    st.innerHTML = hasilsubtotal;
+  
+  var hasilpajak =  hasilsubtotal*(15/100);
+  var pjk = document.getElementById("hasilpajak");
+
+    pjk.innerHTML = hasilpajak;
+  
+  var hasilbayar =  hasilsubtotal+hasilpajak;
+  var hb = document.getElementById("hasilbayar");
+
+    hb.innerHTML = hasilbayar;
+}
+  
+
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+   else if (cat.value == "industri" || cat.value == "Industri" && x.value != ""){
+    console.log("wokwok");
+     var s = ''
+     var n  = ''
+     var a = ''
+     var t = ''
+     
+     for(var i = 1; i <= jp.value; i++) {
+    
+      n += i;
+
+      n += '<br>';
+      var hasil = document.getElementById("nomor");
+
+      hasil.innerHTML = n;
+    }
+     for(var i = 1; i <= jp.value; i++) {
+    
+        s += (i)*1000;
+    
+        s += '<br>';
+        var hasil = document.getElementById("hasil-output");
+
+        hasil.innerHTML = s;
+     }
+     for(var i = 1; i <= jp.value; i++) {
+    
+      a += 75000;
+
+      a += '<br>';
+      var hasil = document.getElementById("Abodemen");
+
+      hasil.innerHTML = a;
+      
+
+   }
+   for(var i = 1; i <= jp.value; i++) {
+    
+    t += (i)*1000+75000;
+
+    t += '<br>';
+    var hasil = document.getElementById("SubTotal");
+
+    hasil.innerHTML = t;
+    
+  }
+  var no = document.getElementById("namaorang");
+  var h
+  h = x.value;
+  no.innerHTML = h;
+  var hasilsubtotal = (jp.value*1000)+75000;
+  var st = document.getElementById("hasilsubtotal");
+
+    st.innerHTML = hasilsubtotal;
+  
+  var hasilpajak =  hasilsubtotal*(20/100);
+  var pjk = document.getElementById("hasilpajak");
+
+    pjk.innerHTML = hasilpajak;
+  
+  var hasilbayar =  hasilsubtotal+hasilpajak;
+  var hb = document.getElementById("hasilbayar");
+
+    hb.innerHTML = hasilbayar;
+   }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+   else if (cat.value == "villa" || cat.value == "Villa" && x.value != ""){
+    console.log("wokwok");
+     var s = ''
+     var n  = ''
+     var a = ''
+     var t = ''
+     
+     for(var i = 1; i <= jp.value; i++) {
+    
+      n += i;
+
+      n += '<br>';
+      var hasil = document.getElementById("nomor");
+
+      hasil.innerHTML = n;
+    }
+     for(var i = 1; i <= jp.value; i++) {
+    
+        s += (i)*1250;
+    
+        s += '<br>';
+        var hasil = document.getElementById("hasil-output");
+
+        hasil.innerHTML = s;
+     }
+     for(var i = 1; i <= jp.value; i++) {
+    
+      a += 100000;
+
+      a += '<br>';
+      var hasil = document.getElementById("Abodemen");
+
+      hasil.innerHTML = a;
+      
+
+   }
+   for(var i = 1; i <= jp.value; i++) {
+    
+    t += (i)*1250+100000;
+
+    t += '<br>';
+    var hasil = document.getElementById("SubTotal");
+
+    hasil.innerHTML = t;
+    
+  }
+  var no = document.getElementById("namaorang");
+  var h
+  h = x.value;
+  no.innerHTML = h;
+  var hasilsubtotal = (jp.value*1250)+100000;
+  var st = document.getElementById("hasilsubtotal");
+
+    st.innerHTML = hasilsubtotal;
+  
+  var hasilpajak =  hasilsubtotal*(25/100);
+  var pjk = document.getElementById("hasilpajak");
+
+    pjk.innerHTML = hasilpajak;
+  
+  var hasilbayar =  hasilsubtotal+hasilpajak;
+  var hb = document.getElementById("hasilbayar");
+
+    hb.innerHTML = hasilbayar;
+   }
+ 
+  });
+
+
+
+
+
+
+
+
+</script>
